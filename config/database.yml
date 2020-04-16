@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: salesforce_heroku_connect_production
-  username: salesforce_heroku_connect
-  password: <%= ENV['SALESFORCE_HEROKU_CONNECT_DATABASE_PASSWORD'] %>
+  # database: salesforce_heroku_connect_production
+  # username: salesforce_heroku_connect
+  # password: <%= ENV['SALESFORCE_HEROKU_CONNECT_DATABASE_PASSWORD'] %>
+  url: <%= ENV["DATABASE_URL"] %>
