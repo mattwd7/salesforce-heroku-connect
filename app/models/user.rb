@@ -1,9 +1,7 @@
 class User < ApplicationRecord
-  # self.salesforce_table = 'Contact'
-
   before_create :set_external_id
-  after_create :create_in_salesforce
-  # after_update :update_in_salesforce
+  after_create :send_to_salesforce
+  after_update :send_to_salesforce
 
   private
 
@@ -11,11 +9,7 @@ class User < ApplicationRecord
     self.external_id = SecureRandom.hex(6)
   end
 
-  def create_in_salesforce
-    sf_client.create('Contact', lastname: self.last_name, firstname: self.first_name, email: self.email)
-  end
-
-  def sf_client
-    @sf_client ||= Restforce.new
+  def send_to_salesforce
+    sf_client.upsert('Contact', 'ExternalId__c', ExternalId__c: self.external_id, lastname: self.last_name, firstname: self.first_name, email: self.email)
   end
 end
