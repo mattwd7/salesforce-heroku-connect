@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/MissionCapital/cookiejar.git
+  revision: 68eecc8415338c6e9d636c4f7e4d2e13547e20a2
+  specs:
+    cookiejar (0.3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -74,7 +80,6 @@ GEM
       xpath (~> 3.2)
     childprocess (3.0.0)
     concurrent-ruby (1.1.6)
-    cookiejar (0.3.3)
     crass (1.0.6)
     dotenv (2.7.2)
     dotenv-rails (2.7.2)
@@ -246,6 +251,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
+  cookiejar!
   dotenv-rails
   faye
   jbuilder (~> 2.7)

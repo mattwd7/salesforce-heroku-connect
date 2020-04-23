@@ -6,6 +6,7 @@ ruby '2.6.5'
 gem 'restforce'
 gem 'awesome_print'
 gem 'faye'
+gem "cookiejar", :git => "https://github.com/MissionCapital/cookiejar.git"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
