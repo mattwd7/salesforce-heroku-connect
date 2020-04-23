@@ -1,0 +1,6 @@
+Post:
+  sf_table_name: Post__c
+  sf_channel_name: AllPosts
+  field_mappings:
+    title: Name
+    external_id: external_id__c
