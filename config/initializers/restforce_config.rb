@@ -8,7 +8,7 @@ Restforce.configure do |config|
   config.api_version = '48.0'
 end
 
-# client = Restforce.new
+client = Restforce.new
 
 # client.create!(
 #   'PushTopic',
@@ -26,3 +26,13 @@ end
 #     Rails.logger.info 'We have a message!', message.inspect
 #   end
 # end
+
+# PushTopic pt = new PushTopic();
+# pt.Id = '0IF5w000000btKxGAI';
+# pt.apiversion = 26.0;
+# pt.name = 'AllPosts';
+# pt.description = 'Update all Post records';
+# pt.query = 'select Id, Name from Post__c';
+# pt.notifyforfields = 'All';
+# update pt;
+# System.debug('Created new PushTopic: '+ pt.Id);
