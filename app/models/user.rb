@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  before_create :set_external_id, :create_in_salesforce
-  after_update :send_to_salesforce
+  before_create :set_external_id
+  after_create :create_in_salesforce
+  after_update :update_in_salesforce
 
   private
 
@@ -9,10 +10,12 @@ class User < ApplicationRecord
   end
 
   def create_in_salesforce
-    self.salesforce_id = sf_client.create!('Contact', lastname: self.last_name, firstname: self.first_name, email: self.email, ExternalId__c: self.external_id)
+    SfCreateService.call(self)
   end
 
-  def send_to_salesforce
+  def update_in_salesforce
+    return if skip_salesforce_update
+
     sf_client.upsert!('Contact', Id: self.salesforce_id, lastname: self.last_name, firstname: self.first_name, email: self.email, ExternalId__c: self.external_id)
   end
 end
