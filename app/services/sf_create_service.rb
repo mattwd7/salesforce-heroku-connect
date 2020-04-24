@@ -8,8 +8,7 @@ class SfCreateService
   end
 
   def call
-    sobject_id = sf_client.create!(resource.class.to_s, mapped_attributes)
-    # binding.pry
+    sobject_id = sf_client.create!(resource_mappings['sf_table_name'], mapped_attributes)
     resource.skip_salesforce_update = true
     resource.update(salesforce_id: sobject_id)
   end
