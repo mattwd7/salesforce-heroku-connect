@@ -10,7 +10,6 @@ describe SfCreateService do
   let(:post) do
     Post.skip_callback(:create, :after, :create_in_salesforce, raise: false)
     Post.create(
-      name: post_name,
       title: post_title,
       content: post_content,
       user: User.create(first_name: 'Matt', last_name: 'Mystery')
@@ -18,8 +17,8 @@ describe SfCreateService do
   end
   let(:post_title) { 'The title of my post' }
   let(:post_content) { 'The content or BODY of my post.' }
-  let(:post_name) { 'The name(??) of my post' }
   let(:post_external_id) { post.external_id }
+  let(:sobject_table_name) { 'Post__c' }
   let(:sobject_id) { 'imanidreturnedbysalesforce' }
 
   let(:sf_client) { instance_double('sf_client', 'create!' => sobject_id).as_null_object }
@@ -30,7 +29,7 @@ describe SfCreateService do
 
   it 'sends created resource attributes to the corresponding salesforce table' do
     described_class.call(post)
-    expect(sf_client).to have_received(:create!).with('Post', **expected_create_args)
+    expect(sf_client).to have_received(:create!).with(sobject_table_name, **expected_create_args)
   end
 
   it 'updates resource with the returned salesforce_id' do
