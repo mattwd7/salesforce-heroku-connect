@@ -8,6 +8,7 @@ gem 'awesome_print'
 gem 'faye'
 gem "cookiejar", :git => "https://github.com/MissionCapital/cookiejar.git"
 gem 'thin'
+gem 'solargraph', group: :development
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
